@@ -18,11 +18,11 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Repositorios</IonTitle>
           </IonToolbar>
         </IonHeader>
-
+        <IonList>
         {repositoryList.map((repo) => (
           <Repoitem key={repo.id} {...repo} />
         ))} 
-
+      </IonList>
       </IonContent>
     </IonPage>
   );
