@@ -2,9 +2,9 @@
 
 ## Información del Estudiante
 
-- **Nombre:** [Tu nombre completo aquí]
-- **Carrera:** [Tu carrera]
-- **Fecha de inicio:** [Fecha]
+- **Nombre:** Dennys Vela
+- **Carrera:** Desarrollo de Software
+- **Fecha de inicio:** 11 de Junio de 2026
 
 ---
 
