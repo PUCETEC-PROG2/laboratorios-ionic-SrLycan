@@ -1,5 +1,16 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import React from 'react';
+import { 
+  IonCard, 
+  IonCardContent, 
+  IonCardHeader, // <-- ¡FALTA IMPORTAR ESTE COMPONENTE!
+  IonCardSubtitle, 
+  IonCardTitle, 
+  IonContent, 
+  IonHeader, 
+  IonPage, 
+  IonTitle, 
+  IonToolbar 
+} from '@ionic/react';
 import './Tab3.css';
 
 const Tab3: React.FC = () => {
@@ -7,16 +18,29 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>Perfil de Usuario</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
+            <IonTitle size="large">Perfil de Usuario</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+
+        <div className="card-container">
+          <IonCard className='card'>
+            <img src="https://avatars.githubusercontent.com/u/211136897?v=4" alt="SrLycan" />
+            <IonCardHeader>
+              <IonCardTitle>Dennys Vela</IonCardTitle>
+              <IonCardSubtitle>SrLycan</IonCardSubtitle>
+            </IonCardHeader>
+            
+            <IonCardContent>
+              Desarrollador de Software pro pro max xd
+            </IonCardContent>
+          </IonCard>
+        </div>
       </IonContent>
     </IonPage>
   );

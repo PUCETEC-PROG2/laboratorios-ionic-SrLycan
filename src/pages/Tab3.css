@@ -1,0 +1,19 @@
+.card-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding: 24px; 
+
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.card img {
+    padding: 16px;
+}
