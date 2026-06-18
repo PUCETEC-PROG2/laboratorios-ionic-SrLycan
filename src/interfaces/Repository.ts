@@ -1,8 +1,12 @@
 export interface Repository {
+    id: number;
     name: string;
-    avatarUrl: string;
     description: string;
     language: string;
+    owner: (
+        login: string;
+        avatar_url: string;
+    )
 }
 
 // Creación del arreglo con 5 instancias
