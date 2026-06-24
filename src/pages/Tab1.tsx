@@ -18,26 +18,20 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const Tab1: React.FC = () => {
   const [repositoryList, setRepositoryList] = React.useState<Repository[]>([]);
   const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState("");
 
   const loadRepos = async () => {
     setLoading(true); 
-    setError(false);
+    setErrorMsg("");
     
-    try {
-      const reposData = await fetchRepositories();
-
-      if (reposData.length === 0) {
-        setError(true);
-      } else {
-        setRepositoryList(reposData);
-      }
-    } catch (err) {
-      console.error("Error cargando repositorios:", err);
-      setError(true);
-    } finally {
-      setLoading(false); 
-    }
+    fetchRepositories()
+      .then((reposData) => setRepositoryList(reposData))
+      .catch((error) => {
+        console.error(error);
+        const apiError = error instanceof Error ? error.message : String(error);
+        setErrorMsg(`Error al cargar repositorios: ${apiError}`);
+      })
+      .finally(() => setLoading(false));
   };
 
   useIonViewWillEnter(() => {
@@ -58,10 +52,8 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Repositorios</IonTitle>
           </IonToolbar>
         </IonHeader>
-        
 
         {loading && <LoadingSpinner />}
-
 
         {!loading && repositoryList.length > 0 && (
           <IonList>
@@ -71,11 +63,10 @@ const Tab1: React.FC = () => {
           </IonList>
         )}
 
-
-        {!loading && error && (
+        {!loading && errorMsg && (
           <div style={{ padding: '20px', textAlign: 'center' }}>
             <IonText color="danger">
-              <p style={{ fontWeight: 'bold' }}>No se pudieron cargar los repositorios</p>
+              <p style={{ fontWeight: 'bold' }}>{errorMsg}</p>
             </IonText>
           </div>
         )} 
