@@ -17,7 +17,6 @@ import { Repository } from '../interfaces/Repository';
 import { deleteRepository } from '../services/GitHubService';
 
 interface RepoItemProps extends Repository {
-  // Se llama despues de un DELETE exitoso para que Tab1 recargue la lista
   onRepoChange: () => void;
 }
 
@@ -33,15 +32,9 @@ const RepoItem: React.FC<RepoItemProps> = (repository) => {
     slidingRef.current?.close();
   };
 
-  // En vez de editar en el mismo item (alert), navegamos a Tab2 en modo edicion,
-  // pasando el repositorio completo por el state de la ruta sin funciones (serializable)
   const goToEdit = () => {
     closeSliding();
     const { onRepoChange, ...repoData } = repository;
-    // Usamos una ruta propia para editar (en vez de solo "/tab2" con state) para que
-    // SIEMPRE se dispare una navegacion real, incluso si ya estabas en el tab2.
-    // Ionic no navega si tocas el tab en el que ya estas, y eso dejaba "pegado" el
-    // location.state viejo entre cambios de tab.
     history.push(
       `/tab2/edit/${encodeURIComponent(repository.owner.login)}/${encodeURIComponent(repository.name)}`,
       { editRepo: repoData }
