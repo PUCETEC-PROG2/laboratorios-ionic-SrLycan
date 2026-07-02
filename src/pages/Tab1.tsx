@@ -58,7 +58,7 @@ const Tab1: React.FC = () => {
         {!loading && repositoryList.length > 0 && (
           <IonList>
             {repositoryList.map((repo) => (
-              <RepoItem key={repo.name} {...repo} /> 
+              <RepoItem key={repo.name} {...repo} onRepoChange={loadRepos} />
             ))} 
           </IonList>
         )}

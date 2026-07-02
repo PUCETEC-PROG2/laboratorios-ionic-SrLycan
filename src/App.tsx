@@ -55,9 +55,20 @@ const App: React.FC = () => (
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
+          <Route
+            exact
+            path="/tab2/edit/:owner/:repo"
+            render={(routeProps) => (
+              <Tab2
+                key={`edit-${routeProps.match.params.owner}-${routeProps.match.params.repo}`}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/tab2"
+            render={() => <Tab2 key="create" />}
+          />
           <Route path="/tab3">
             <Tab3 />
           </Route>

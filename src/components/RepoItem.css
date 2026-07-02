@@ -1,0 +1,34 @@
+/*
+  Se fuerza un fondo gris/plomo y colores de texto blanco con buen contraste
+  para que siempre se vean y se adapten al diseño de la aplicación.
+*/
+ion-alert.repo-delete-alert,
+ion-alert.repo-edit-alert {
+  --background: #2e2e2e;
+  --max-width: 320px;
+}
+
+ion-alert.repo-delete-alert::part(header),
+ion-alert.repo-delete-alert::part(message),
+ion-alert.repo-edit-alert::part(header),
+ion-alert.repo-edit-alert::part(message) {
+  color: #ffffff;
+}
+
+ion-alert.repo-delete-alert::part(button),
+ion-alert.repo-edit-alert::part(button) {
+  font-weight: 600;
+}
+
+ion-alert.repo-delete-alert .repo-delete-alert-cancel,
+ion-alert.repo-edit-alert .repo-edit-alert-cancel {
+  color: #3880ff !important;
+}
+
+ion-alert.repo-delete-alert .repo-delete-alert-confirm {
+  color: #eb445a !important;
+}
+
+ion-alert.repo-edit-alert .repo-edit-alert-confirm {
+  color: #2dd55b !important;
+}

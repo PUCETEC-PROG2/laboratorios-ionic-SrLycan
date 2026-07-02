@@ -1,13 +1,7 @@
 import axios from "axios";
 import { Repository } from "../interfaces/Repository";
 import { GithubUser } from "../interfaces/GithubUser";
-
-// Asegúrate de tener esta interfaz creada o importada correctamente
-interface RepositoryPayload {
-  name: string;
-  description?: string;
-  private?: boolean;
-}
+import { RepositoryPayload } from "../interfaces/RepositoryPayload";
 
 const GITHUB_API_URL = import.meta.env.VITE_GITHUB_API_URL || "https://api.github.com";
 const GITHUB_API_TOKEN = import.meta.env.VITE_GITHUB_API_TOKEN;
@@ -55,6 +49,29 @@ export const fetchUserInfo = async (): Promise<GithubUser> => {
     return response.data as GithubUser;
   } catch (error) {
     console.error("Error al leer usuario", error);
+    throw new Error(`${(error as Error).message}`);
+  }
+};
+
+export const updateRepository = async (
+  owner: string,
+  repo: string,
+  changes: Partial<RepositoryPayload>
+): Promise<Repository> => {
+  try {
+    const response = await githubClient.patch(`repos/${owner}/${repo}`, changes);
+    return response.data as Repository;
+  } catch (error) {
+    console.error("Error al editar repositorio", error);
+    throw new Error(`${(error as Error).message}`);
+  }
+};
+
+export const deleteRepository = async (owner: string, repo: string): Promise<void> => {
+  try {
+    await githubClient.delete(`repos/${owner}/${repo}`);
+  } catch (error) {
+    console.error("Error al eliminar repositorio", error);
     throw new Error(`${(error as Error).message}`);
   }
 };
